@@ -47,37 +47,31 @@ modifyHexRAW = (inputData) => {
 }
 
 exports.generateData = (inputData, outputType) => {
-    let header, newHex, glitchData;
+    let header, newHex;
     switch(outputType){
         case '.mp3':
             header = generateHeaderMP3(inputData);
             newHex = modifyHexMP3(inputData);
-            glitchData = header+newHex
-            return glitchData;
+            return header+newHex;
         case '.jpg':
             header = generateHeaderJPG(inputData);
             newHex = modifyHexJPG(inputData);
-            glitchData = header+newHex
-            return glitchData;
+            return header+newHex;
         case '.wav':
             header = generateHeaderWAV(inputData);
             newHex = modifyHexWAV(inputData);
-            glitchData = header+newHex
-            return glitchData;
+            return header+newHex;
         case '.bmp':
             header = generateHeaderBMP(inputData);
             newHex = modifyHexBMP(inputData);
-            glitchData = header+newHex
-            return glitchData;
+            return header+newHex;
         case '.gif':
             header = generateHeaderGIF(inputData);
             newHex = modifyHexGIF(inputData);
-            glitchData = header+newHex
-            return glitchData;
+            return header+newHex;
         case '.raw':
             header = generateHeaderRAW(inputData);
             newHex = modifyHexRAW(inputData);
-            glitchData = header+newHex
-            return glitchData;
+            return header+newHex;
     }
 }
