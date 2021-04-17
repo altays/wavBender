@@ -1,49 +1,56 @@
+const bmp = require('./bmp')
+const gif = require('./gif');
+const jpg = require('./jpg');
+const mp3 = require('./mp3');
+const raw = require('./raw');
+const wav = require('./wav');
+
 generateHeaderMP3 = (inputData) => {
-    return "MP3 Header"
+    return mp3.header(inputData);
 }
 
 modifyHexMP3 = (inputData) => {
-    return "MP3 Hex"
+    return mp3.hex(inputData);
 }
 
 generateHeaderJPG = (inputData) => {
-    return "JPG Header"
+    return jpg.header(inputData);
 }
 
 modifyHexJPG = (inputData) => {
-    return "JPG Hex"
+    return jpg.hex(inputData);
 }
 
 generateHeaderWAV = (inputData) => {
-    return "WAV Header"
+    return wav.header(inputData);
 }
 
 modifyHexWAV = (inputData) => {
-    return "WAV Hex"
+    return wav.hex(inputData);
 }
 
 generateHeaderBMP = (inputData) => {
-    return "BMP Header"
+    return bmp.header(inputData);
 }
 
 modifyHexBMP = (inputData) => {
-    return "BMP Hex"
+    return bmp.hex(inputData);
 }
 
 generateHeaderGIF = (inputData) => {
-    return "GIF Header"
+    return gif.header(inputData)
 }
 
 modifyHexGIF = (inputData) => {
-    return "GIF Hex"
+    return gif.header(inputData)
 }
 
 generateHeaderRAW = (inputData) => {
-    return "RAW Header"
+    return raw.header(inputData)
 }
 
 modifyHexRAW = (inputData) => {
-    return "RAW Hex"
+    return raw.hex(inputData)
 }
 
 exports.generateData = (inputData, outputType) => {

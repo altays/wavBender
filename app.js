@@ -1,7 +1,7 @@
 const fs = require('fs');
 const util = require('util');
-const format = require('./fileFormats');
-const utilities = require('./utilities');
+const format = require('./modules/fileFormats');
+const utilities = require('./modules/utilities');
 const readFile = util.promisify(fs.readFile);
 
 // test string - node app.js testfile.txt outfile -f=w
