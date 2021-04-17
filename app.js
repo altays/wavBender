@@ -1,6 +1,7 @@
 const fs = require('fs');
 const util = require('util')
 const readFile = util.promisify(fs.readFile);
+const formats = require('./fileFormats');
 
 // test string - node app.js testfile.txt outfile -f=w
 
@@ -50,78 +51,30 @@ function checkArgument(arg) {
 function generateData(inputData, outputType) {
     switch(outputType){
         case '.mp3':
-            header = generateHeaderMP3(inputData);
-            newHex = modifyHexMP3(inputData);
+            header = formats.generateHeaderMP3(inputData);
+            newHex = formats.modifyHexMP3(inputData);
             break;
         case '.jpg':
-            header = generateHeaderJPG(inputData);
-            newHex = modifyHexJPG(inputData);
+            header = formats.generateHeaderJPG(inputData);
+            newHex = formats.modifyHexJPG(inputData);
             break;
         case '.wav':
-            header = generateHeaderWAV(inputData);
-            newHex = modifyHexWAV(inputData);
+            header = formats.generateHeaderWAV(inputData);
+            newHex = formats.modifyHexWAV(inputData);
             break;
         case '.bmp':
-            header = generateHeaderBMP(inputData);
-            newHex = modifyHexBMP(inputData);
+            header = formats.generateHeaderBMP(inputData);
+            newHex = formats.modifyHexBMP(inputData);
             break;
         case '.gif':
-            header = generateHeaderGIF(inputData);
-            newHex = modifyHexGIF(inputData);
+            header = formats.generateHeaderGIF(inputData);
+            newHex = formats.modifyHexGIF(inputData);
             break;
         case '.raw':
-            header = generateHeaderRAW(inputData);
-            newHex = modifyHexRAW(inputData);
+            header = formats.generateHeaderRAW(inputData);
+            newHex = formats.modifyHexRAW(inputData);
             break;
     }
-}
-
-function generateHeaderMP3() {
-    return "MP3 Header"
-}
-
-function modifyHexMP3() {
-    return "MP3 Hex"
-}
-
-function generateHeaderJPG() {
-    return "JPG Header"
-}
-
-function modifyHexJPG() {
-    return "JPG Hex"
-}
-
-function generateHeaderWAV() {
-    return "WAV Header"
-}
-
-function modifyHexWAV() {
-    return "WAV Hex"
-}
-
-function generateHeaderBMP() {
-    return "BMP Header"
-}
-
-function modifyHexBMP() {
-    return "BMP Hex"
-}
-
-function generateHeaderGIF() {
-    return "GIF Header"
-}
-
-function modifyHexGIF() {
-    return "GIF Hex"
-}
-
-function  generateHeaderRAW() {
-    return "RAW Header"
-}
-
-function modifyHexRAW() {
-    return "RAW Hex"
 }
 
 fileRead(readFileName).then(data => {
