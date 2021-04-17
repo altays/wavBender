@@ -2,4 +2,10 @@
 
 To run, type "node app.js testFile.txt output -f=<m/w/j/g/r/b>"
 
-At the moment, this isn't creating any files (and there's still a lot of work left to do!)
+Currently supports creating wav files from any kind of input.
+
+Future plans:
+* implement support for mp3, raw, jpg, gif, bmp, and other formats
+* clean up code
+* general github niceties
+
