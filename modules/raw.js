@@ -1,7 +1,10 @@
 exports.header = (inputData) => {
-    return "RAW Header"
+    return "rawHeader"
 }
 
 exports.hex = (inputData) => {
-    return "RAW Hex"
+    return "rawHex"
 }
+
+// https://docs.rs/riff-wave/0.1.2/riff_wave/
+// http://www.neurophys.wisc.edu/auditory/riff-format.txt

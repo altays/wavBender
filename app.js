@@ -28,10 +28,10 @@ fileRead(readFileName).then(data => {
     glitchData = format.generateData(Buf, formatType);
     // console.log(glitchData)
 
-    // fs.writeFile(bentFileName, glitchData, (err) => {
-    //     if (err) throw err;
-    //     console.log('The file has been saved!');
-    //   });
+    fs.writeFile(bentFileName, glitchData, (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+      });
 })
 
 // expanding
