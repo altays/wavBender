@@ -1,48 +1,83 @@
-exports.generateHeaderMP3 = (inputData) => {
+generateHeaderMP3 = (inputData) => {
     return "MP3 Header"
 }
 
-exports.modifyHexMP3 = (inputData) => {
+modifyHexMP3 = (inputData) => {
     return "MP3 Hex"
 }
 
-exports.generateHeaderJPG = (inputData) => {
+generateHeaderJPG = (inputData) => {
     return "JPG Header"
 }
 
-exports.modifyHexJPG = (inputData) => {
+modifyHexJPG = (inputData) => {
     return "JPG Hex"
 }
 
-exports.generateHeaderWAV = (inputData) => {
+generateHeaderWAV = (inputData) => {
     return "WAV Header"
 }
 
-exports.modifyHexWAV = (inputData) => {
+modifyHexWAV = (inputData) => {
     return "WAV Hex"
 }
 
-exports.generateHeaderBMP = (inputData) => {
+generateHeaderBMP = (inputData) => {
     return "BMP Header"
 }
 
-exports.modifyHexBMP = (inputData) => {
+modifyHexBMP = (inputData) => {
     return "BMP Hex"
 }
 
-exports.generateHeaderGIF = (inputData) => {
+generateHeaderGIF = (inputData) => {
     return "GIF Header"
 }
 
-exports.modifyHexGIF = (inputData) => {
+modifyHexGIF = (inputData) => {
     return "GIF Hex"
 }
 
-exports.generateHeaderRAW = (inputData) => {
+generateHeaderRAW = (inputData) => {
     return "RAW Header"
 }
 
-exports.modifyHexRAW = (inputData) => {
+modifyHexRAW = (inputData) => {
     return "RAW Hex"
 }
 
+exports.generateData = (inputData, outputType) => {
+    let header, newHex, glitchData;
+    switch(outputType){
+        case '.mp3':
+            header = generateHeaderMP3(inputData);
+            newHex = modifyHexMP3(inputData);
+            glitchData = header+newHex
+            return glitchData;
+        case '.jpg':
+            header = generateHeaderJPG(inputData);
+            newHex = modifyHexJPG(inputData);
+            glitchData = header+newHex
+            return glitchData;
+        case '.wav':
+            header = generateHeaderWAV(inputData);
+            newHex = modifyHexWAV(inputData);
+            glitchData = header+newHex
+            return glitchData;
+        case '.bmp':
+            header = generateHeaderBMP(inputData);
+            newHex = modifyHexBMP(inputData);
+            glitchData = header+newHex
+            return glitchData;
+        case '.gif':
+            header = generateHeaderGIF(inputData);
+            newHex = modifyHexGIF(inputData);
+            glitchData = header+newHex
+            return glitchData;
+        case '.raw':
+            header = generateHeaderRAW(inputData);
+            newHex = modifyHexRAW(inputData);
+            glitchData = header+newHex
+            return glitchData;
+    }
+}
