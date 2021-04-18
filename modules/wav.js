@@ -1,9 +1,11 @@
-exports.header = (inputData) => {
+exports.header = (inputData, configObj) => {
     // add config input as second parameter
     let header, input, headerStr;
     let riff, fileSize, wave, riffCombined;
     let fmt, fmtLength, formatType, channels, sampleRate, sampleBits, bitRate, bitsPerSample, fmtCombined;
     let data, dataLength, dataCombined;
+
+    console.log(configObj)
 
     header = Buffer.alloc(50);
     input = Buffer.from(inputData, "utf-8");

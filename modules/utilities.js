@@ -26,7 +26,6 @@ exports.checkConfig = (postfix) => {
     tempConfigObj[entry[0]] = entry[1]
     }
 
-    console.log(tempConfigObj)
     return tempConfigObj
 }
 
