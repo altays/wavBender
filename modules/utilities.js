@@ -1,19 +1,19 @@
 exports.checkFormatType = (postfix) => {   
     switch(postfix){
         case 'm':
-            return ".mp3";
+            return "mp3";
         case 'j':
-            return ".jpg";
+            return "jpg";
         case 'w':
-            return ".wav";
+            return "wav";
         case 'b':
-            return ".bmp"
+            return "bmp"
         case 'g':
-            return ".gif";
+            return "gif";
         case 'r':
-            return ".raw"
+            return "raw"
         default:
-            return ".raw"
+            return "raw"
     }
 }
 

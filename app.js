@@ -5,17 +5,16 @@ const utilities = require('./modules/utilities');
 const readFile = util.promisify(fs.readFile);
 const path = require('path')
 
-// test string - node app.js inputs/testfile.txt outfile -f=w
+// test string - node app.js testfile.txt outfile -f=w
 
 function fileRead(file) {
     return readFile(file, 'utf8')
 }
 
-
 let formatType, bentFileName, header, newHex, glitchData;
 [nodePath, filePath,  readFileName, outputFileName, ...args] = process.argv;
 
-fileRead(readFileName).then(data => {
+fileRead(path.join("inputs/",readFileName)).then(data => {
     const Buf = Buffer.from(data, "utf8").toString('hex');
 
     args.forEach(arg => {
@@ -27,11 +26,11 @@ fileRead(readFileName).then(data => {
     });
 
     let versionName = utilities.nameVersion(outputFileName)
-    bentFileName = `${versionName}${formatType}`;
+    bentFileName = `${versionName}.${formatType}`;
     glitchData = format.generateData(Buf, formatType);
 
-    fs.writeFile(bentFileName, glitchData, (err) => {
-        if (err) throw err;
+    fs.writeFile(path.join("outputs/",formatType,"/",bentFileName), glitchData, (err) => {
+        if (err) console.log("error!");
         console.log('The file has been saved!');
       });
 })
