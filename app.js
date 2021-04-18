@@ -3,12 +3,14 @@ const util = require('util');
 const format = require('./modules/fileFormats');
 const utilities = require('./modules/utilities');
 const readFile = util.promisify(fs.readFile);
+const path = require('path')
 
-// test string - node app.js testfile.txt outfile -f=w
+// test string - node app.js inputs/testfile.txt outfile -f=w
 
 function fileRead(file) {
     return readFile(file, 'utf8')
 }
+
 
 let formatType, bentFileName, header, newHex, glitchData;
 [nodePath, filePath,  readFileName, outputFileName, ...args] = process.argv;
@@ -24,9 +26,9 @@ fileRead(readFileName).then(data => {
         }
     });
 
-    bentFileName = `${outputFileName}${formatType}`;
+    let versionName = utilities.nameVersion(outputFileName)
+    bentFileName = `${versionName}${formatType}`;
     glitchData = format.generateData(Buf, formatType);
-    // console.log(glitchData)
 
     fs.writeFile(bentFileName, glitchData, (err) => {
         if (err) throw err;

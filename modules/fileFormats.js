@@ -69,7 +69,6 @@ exports.generateData = (inputData, outputType) => {
             newHex = modifyHexWAV(inputData);
             arr = [header,newHex];
             buf = Buffer.concat(arr);
-            
             return buf;
         case '.bmp':
             header = generateHeaderBMP(inputData);

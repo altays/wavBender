@@ -16,3 +16,10 @@ exports.checkFormatType = (postfix) => {
             return ".raw"
     }
 }
+
+exports.nameVersion = (outputName) => {
+    // add date and time to output name, then return the combined result
+    let dateAndTime = Date.now();
+    return outputName + dateAndTime;
+    // console.log(outputName + dateAndTime)
+}
