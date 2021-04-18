@@ -17,7 +17,7 @@ let formatType, bentFileName, header, newHex, glitchData;
 fileRead(path.join("inputs/",readFileName)).then(data => {
     const Buf = Buffer.from(data, "utf8").toString('hex');
 
-    // empty config object here
+    configObj = new Object();
 
     args.forEach(arg => {
         let prefix = arg.trim().slice(0,2);
@@ -30,11 +30,14 @@ fileRead(path.join("inputs/",readFileName)).then(data => {
         if (prefix == "-f") {
             formatType = utilities.checkFormatType(postfix);
         }
+        if (prefix == "-c") {
+            configObj = utilities.checkConfig(postfix);
+        }
     });
 
     let versionName = utilities.nameVersion(outputFileName)
     bentFileName = `${versionName}.${formatType}`;
-    glitchData = format.generateData(Buf, formatType);
+    glitchData = format.generateData(Buf, formatType, configObj);
 
     fs.writeFile(path.join("outputs/",formatType,"/",bentFileName), glitchData, (err) => {
         if (err) console.log("error!");
