@@ -1,4 +1,5 @@
 exports.header = (inputData) => {
+    // add config input as second parameter
     let header, input, headerStr;
     let riff, fileSize, wave, riffCombined;
     let fmt, fmtLength, formatType, channels, sampleRate, sampleBits, bitRate, bitsPerSample, fmtCombined;
@@ -19,7 +20,7 @@ exports.header = (inputData) => {
     fmt = "666D7420";
     fmtLength = "10000000";
     formatType = "0100";
-    channels = "0200"; // 9200 is stereo, 0100 is mono
+    channels = "0200"; // 0200 is stereo, 0100 is mono // pull value from config or default to mono
     sampleRate = "44AC0000";
     sampleBits = "88510100";
     bitRate = "0200";

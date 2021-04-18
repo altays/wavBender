@@ -4,6 +4,9 @@ const jpg = require('./jpg');
 const mp3 = require('./mp3');
 const raw = require('./raw');
 const wav = require('./wav');
+// import utilities for config checking
+
+// add config parameter to each of these
 
 generateHeaderMP3 = (inputData) => {
     return mp3.header(inputData);
@@ -54,6 +57,12 @@ modifyHexRAW = (inputData) => {
 }
 
 exports.generateData = (inputData, outputType) => {
+    // add config parameter above
+
+    // might need to copy the .wav format for the others and export bytes
+
+    // add config param to each of the generate/modify functions
+
     let header, newHex;
     switch(outputType){
         case '.mp3':
