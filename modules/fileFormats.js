@@ -65,29 +65,29 @@ exports.generateData = (inputData, outputType) => {
 
     let header, newHex;
     switch(outputType){
-        case '.mp3':
+        case 'mp3':
             header = generateHeaderMP3(inputData);
             newHex = modifyHexMP3(inputData);
             return header+newHex;
-        case '.jpg':
+        case 'jpg':
             header = generateHeaderJPG(inputData);
             newHex = modifyHexJPG(inputData);
             return header+newHex;
-        case '.wav':
+        case 'wav':
             header = generateHeaderWAV(inputData);
             newHex = modifyHexWAV(inputData);
             arr = [header,newHex];
             buf = Buffer.concat(arr);
             return buf;
-        case '.bmp':
+        case 'bmp':
             header = generateHeaderBMP(inputData);
             newHex = modifyHexBMP(inputData);
             return header+newHex;
-        case '.gif':
+        case 'gif':
             header = generateHeaderGIF(inputData);
             newHex = modifyHexGIF(inputData);
             return header+newHex;
-        case '.raw':
+        case 'raw':
             header = generateHeaderRAW(inputData);
             newHex = modifyHexRAW(inputData);
             return header+newHex;
