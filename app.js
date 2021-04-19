@@ -33,11 +33,11 @@ fileRead(path.join("inputs/",readFileName)).then(data => {
         }
     });
 
-    const Buf = Buffer.from(modData, "utf8").toString();
+    // const Buf = Buffer.from(modData, "utf8").toString();
 
     let versionName = utilities.nameVersion(outputFileName)
     bentFileName = `${versionName}.${formatType}`;
-    glitchData = format.generateData(Buf, formatType, configObj);
+    glitchData = format.generateData(modData, formatType, configObj);
 
     fs.writeFile(path.join("outputs/",formatType,"/",bentFileName), glitchData, (err) => {
         if (err) console.log(err);
