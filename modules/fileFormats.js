@@ -2,7 +2,6 @@ const bmp = require('./bmp')
 const gif = require('./gif');
 const jpg = require('./jpg');
 const mp3 = require('./mp3');
-const raw = require('./raw');
 const wav = require('./wav');
 
 exports.generateData = (inputData, outputType, configObj) => {
@@ -25,12 +24,8 @@ exports.generateData = (inputData, outputType, configObj) => {
             newHex = bmp.hex(inputData);
             break;
         case 'gif':
-            header = gif.header(inputData);
-            newHex = gif.hex(inputData);
-            break;
-        case 'raw':
-            header = raw.header(inputData);
-            newHex = raw.hex(inputData);
+            header = gif.header(inputData, configObj);
+            newHex = gif.hex(inputData, configObj);
             break;
     }
     arr = [header,newHex];

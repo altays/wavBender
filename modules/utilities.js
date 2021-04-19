@@ -13,10 +13,8 @@ exports.checkFormatType = (postfix) => {
             return "bmp"
         case 'g':
             return "gif";
-        case 'r':
-            return "raw"
         default:
-            return "raw"
+            return "wav"
     }
 }
 

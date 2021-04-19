@@ -5,7 +5,7 @@ const utilities = require('./modules/utilities');
 const readFile = util.promisify(fs.readFile);
 const path = require('path');
 
-// test string - node app.js testfile.txt outfile -f=w
+// test string - node app.js testfile.txt outfile -f=w -c=channels:stereo -s
 
 function fileRead(file) {
     return readFile(file, 'utf8')
@@ -33,7 +33,7 @@ fileRead(path.join("inputs/",readFileName)).then(data => {
         }
     });
 
-    const Buf = Buffer.from(modData, "utf8").toString('hex');
+    const Buf = Buffer.from(modData, "utf8").toString();
 
     let versionName = utilities.nameVersion(outputFileName)
     bentFileName = `${versionName}.${formatType}`;
