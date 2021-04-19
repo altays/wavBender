@@ -1,15 +1,11 @@
 exports.header = (inputData, configObj) => {
-    // add config input as second parameter
     let header, input, headerStr;
     let riff, fileSize, wave, riffCombined;
     let fmt, fmtLength, formatType, channels, sampleRate, sampleBits, bitRate, bitsPerSample, fmtCombined;
     let data, dataLength, dataCombined;
 
-    console.log(configObj)
-
     header = Buffer.alloc(50);
     input = Buffer.from(inputData, "utf-8");
-
     riff = "52494646";
     wave = "57415645";
     headerLength = header.length;
@@ -22,7 +18,16 @@ exports.header = (inputData, configObj) => {
     fmt = "666D7420";
     fmtLength = "10000000";
     formatType = "0100";
-    channels = "0200"; // 0200 is stereo, 0100 is mono // pull value from config or default to mono
+    channels = "0100"
+
+    if (configObj.channels != undefined) {
+        if (configObj.channels == "mono".toLowerCase()) {
+            channels = "0100";
+        } else if (configObj.channels == "stereo".toLowerCase()) {
+            channels = "0200";
+        }
+    }
+
     sampleRate = "44AC0000";
     sampleBits = "88510100";
     bitRate = "0200";
@@ -40,9 +45,5 @@ exports.header = (inputData, configObj) => {
 
 exports.hex = (inputData) => {
     var buffer = Buffer.from(inputData.trim(), "utf-8");
-    
     return buffer
 }
-
-// https://docs.rs/riff-wave/0.1.2/riff_wave/
-// http://www.neurophys.wisc.edu/auditory/riff-format.txt
