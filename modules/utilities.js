@@ -67,11 +67,15 @@ scrambleText = (value, situ, repeats) => {
 
 exports.inputScrambler = (inputText) => {
     let inputScrambled = "";
+    // mess with these values if you want to change the intensity of the randomness
+    let rMin = 10;
+    let rMax = 1000;
+
     for (let i = 0; i < inputText.length; i++) {
 
         let tempVal = inputText[i]
         let value;
-        let randNums = [getRandomIntInclusive(1,2),getRandomIntInclusive(0,2),getRandomIntInclusive(2,10), getRandomIntInclusive(1,2)]
+        let randNums = [getRandomIntInclusive(1,2),getRandomIntInclusive(0,2),getRandomIntInclusive(2,getRandomIntInclusive(rMin,rMax)), getRandomIntInclusive(1,getRandomIntInclusive(rMin,rMax))]
 
         if (randNums[0] = 0) {
             // skipping over this value
@@ -85,8 +89,6 @@ exports.inputScrambler = (inputText) => {
         }
         inputScrambled += value;        
     }
-
-    // console.log(inputScrambled)
 
     return inputScrambled
 }
