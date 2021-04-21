@@ -20,14 +20,6 @@ exports.header = (inputData, configObj) => {
     formatType = "0100";
     channels = "0100"
 
-    if (configObj.channels != undefined) {
-        if (configObj.channels == "mono".toLowerCase()) {
-            channels = "0100";
-        } else if (configObj.channels == "stereo".toLowerCase()) {
-            channels = "0200";
-        }
-    }
-
     sampleRate = "44AC0000";
     sampleBits = "88510100";
     bitRate = "0200";

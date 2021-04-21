@@ -18,6 +18,15 @@ exports.checkFormatType = (postfix) => {
     }
 }
 
+exports.checkInputType = (postfix) => {   
+    switch(postfix){
+        case 't':
+            return "text";
+        case 'h':
+            return "hex";
+    }
+}
+
 exports.checkConfig = (postfix) => {   
     let tempConfigObj = new Object()
     configArray = postfix.split(',')
@@ -37,22 +46,27 @@ nameVersion = (outputName) => {
 
 exports.nameVersion = nameVersion;
 
-// from MDN https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+exports.getRandomIntInclusive = getRandomIntInclusive;
+
 scrambleText = (value, situ, repeats) => {
     tempVal = value;
     switch (situ) {
         case 0:
-            tempVal = tempVal.toUpperCase();
+            if (typeof tempVal == "string") {
+                tempVal = tempVal.toUpperCase();
+            }
             tempVal = tempVal.repeat(repeats)
             break;
         case 1:
-            tempVal = tempVal.toLowerCase();
+            if (typeof tempVal == "string") {
+                tempVal = tempVal.toLowerCase();
+            }
             tempVal = tempVal.repeat(repeats)
             break;
         case 2:
@@ -63,9 +77,10 @@ scrambleText = (value, situ, repeats) => {
     return tempVal;
 }
 
+// chooses either one character, a set of characters, or skips over a character. If a / several characters, converts to upper/lower and then repeats
 exports.inputScrambler = (inputText) => {
     let inputScrambled = "";
-    // mess with these values if you want to change the intensity of the randomness
+    // mess with these values to change the intensity of the randomness
     let rMin = 100;
     let rMax = 10000;
 

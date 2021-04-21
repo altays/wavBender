@@ -46,8 +46,8 @@ exports.generateDataHex = (inputData, outputType, configObj) => {
             newHex = jpg.bodyHex(inputData);
             break;
         case 'wav':
-            header = wav.header(inputData, configObj);
-            newHex = wav.bodyHex(inputData, configObj);
+            header = wav.header(inputData);
+            newHex = wav.bodyHex(inputData);
             break;
         case 'bmp':
             header = bmp.header(inputData);
@@ -58,6 +58,7 @@ exports.generateDataHex = (inputData, outputType, configObj) => {
             newHex = gif.bodyHex(inputData, configObj);
             break;
     }
+
     arr = [header,newHex];
     buf = Buffer.concat(arr);
     return buf;
