@@ -43,7 +43,14 @@ exports.header = (inputData, configObj) => {
     return header;
 }
 
-exports.hex = (inputData) => {
+exports.body = (inputData) => {
     var buffer = Buffer.from(inputData.trim(), "utf-8");
     return buffer
 }
+
+exports.bodyHex = inputData => {
+    var buffer = Buffer.from(inputData, "hex");
+    return buffer
+}
+
+// second function here if the argument is "hex" - if input text is hexcode. create a buffer from inputData without trimming?

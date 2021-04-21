@@ -37,7 +37,7 @@ exports.header = (inputData, configObj) => {
     return header;
 }
 
-exports.hex = (inputData, configObj) => {
+exports.body = (inputData, configObj) => {
 
     let graphicControlExtension, extensionIntroducer, graphicControlLabel,byteSize,packedField2,delayTime,transparentColorIndex;
     let imageDescriptor, imageSeparator, imageLeft, imageTop, imageWidth, imageHeight, packedField3;
@@ -85,4 +85,8 @@ exports.hex = (inputData, configObj) => {
     body = Buffer.alloc(dataToWrite.length);
     body = Buffer.from(dataToWrite, "hex")    
     return body
+}
+
+exports.bodyHex = inputData => {
+    
 }

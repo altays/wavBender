@@ -66,8 +66,8 @@ scrambleText = (value, situ, repeats) => {
 exports.inputScrambler = (inputText) => {
     let inputScrambled = "";
     // mess with these values if you want to change the intensity of the randomness
-    let rMin = 10;
-    let rMax = 1000;
+    let rMin = 100;
+    let rMax = 10000;
 
     for (let i = 0; i < inputText.length; i++) {
 
