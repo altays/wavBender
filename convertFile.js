@@ -5,8 +5,6 @@ const utilities = require('./modules/utilities');
 const readFile = util.promisify(fs.readFile);
 const path = require('path');
 
-// test string - node app.js testfile.txt outfile -f=w -t=t -s
-
 function fileRead(file) {
     return readFile(file, 'utf8')
 }
