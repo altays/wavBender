@@ -1,6 +1,8 @@
 const fs = require('fs');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
+const path = require('path');
+const utilities = require('./modules/utilities');
 
 // generates a file using hex characters from a file. breaks source down into groups of characters, rebuilds based on number of those groups. 
 // i.e., can break a file down into sets of 2 characters, then rebuild with 100 random sets
@@ -20,7 +22,7 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 
-fileRead(readFileName).then(data => {
+fileRead(path.join('inputs/', readFileName)).then(data => {
     let formatType;
     let readFileNameNoExt = readFileName.slice(0,readFileName.length-4);
     let whileLimit = 100 // for the while loop later
@@ -59,14 +61,17 @@ fileRead(readFileName).then(data => {
 
     let i = 0
     while (i < whileLimit) {
-        let randomIndex = getRandomIntInclusive(0,bufSetArray.length)
+        let randomIndex = utilities.getRandomIntInclusive(0,bufSetArray.length)
+        // let randomIndex = utilities.getRandomIntInclusive(0,)
         remixedData += bufSetArray[randomIndex]
         i++
     }
 
-    fs.writeFile(`${readFileNameNoExt + "_remixed.txt"}`, remixedData, (err) => {
+    let versionName = utilities.nameVersion(readFileNameNoExt)
+
+    fs.writeFile("inputs/" + readFileNameNoExt + versionName + ".txt", remixedData, (err) => {
         if (err) console.log(err);
-        console.log('The file has been saved!');
+        else console.log('The file has been saved!');
     });
 
 })
