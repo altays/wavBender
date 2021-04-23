@@ -13,6 +13,8 @@ exports.checkFormatType = (postfix) => {
             return "bmp"
         case 'g':
             return "gif";
+        case 'p':
+            return "png";
         default:
             return "wav"
     }
@@ -104,4 +106,24 @@ exports.inputScrambler = (inputText) => {
     }
 
     return inputScrambled
+}
+
+exports.pngBitDepth = idhrColor => {
+    switch (idhrColor) {
+        case "00":
+            validNums = ["00","01","02","04","08","16"];
+            return validNums[getRandomIntInclusive(0,validNums.length-1)];
+        case "02":
+            validNums = ["08","16"];
+            return validNums[getRandomIntInclusive(0,validNums.length-1)];
+        case "03":
+            validNums = ["01","02","04","08"];
+            return validNums[getRandomIntInclusive(0,validNums.length-1)];
+        case "04":
+            validNums = ["08","16"];
+            return validNums[getRandomIntInclusive(0,validNums.length-1)];
+        case "06":
+            validNums = ["08","16"];
+            return validNums[getRandomIntInclusive(0,validNums.length-1)];
+    }
 }

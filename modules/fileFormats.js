@@ -3,6 +3,7 @@ const gif = require('./gif');
 const jpg = require('./jpg');
 const mp3 = require('./mp3');
 const wav = require('./wav');
+const png = require('./png')
 
 exports.generateData = (inputData, outputType, configObj) => {
     let header, newHex;
@@ -27,10 +28,14 @@ exports.generateData = (inputData, outputType, configObj) => {
             header = gif.header(inputData, configObj);
             newHex = gif.body(inputData, configObj);
             break;
+        case 'png':
+            header = png.header(inputData, configObj);
+            newHex = png.body(inputData, configObj);
+            break;
     }
-    arr = [header,newHex];
-    buf = Buffer.concat(arr);
-    return buf;
+    // arr = [header,newHex];
+    // buf = Buffer.concat(arr);
+    // return buf;
 }
 
 // if incoming data is hexcode
@@ -57,9 +62,13 @@ exports.generateDataHex = (inputData, outputType, configObj) => {
             header = gif.header(inputData, configObj);
             newHex = gif.bodyHex(inputData, configObj);
             break;
+        case 'png':
+            header = gif.header(inputData, configObj);
+            newHex = gif.bodyHex(inputData, configObj);
+            break;
     }
 
-    arr = [header,newHex];
-    buf = Buffer.concat(arr);
-    return buf;
+    // arr = [header,newHex];
+    // buf = Buffer.concat(arr);
+    // return buf;
 }
