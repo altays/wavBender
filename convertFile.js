@@ -6,6 +6,7 @@ const readFile = util.promisify(fs.readFile);
 const path = require('path');
 
 // node convertFile.js testFile.txt outfile -f=p -s
+// node convertFile.js testFile.txt outfile -f=g
 
 function fileRead(file) {
     return readFile(file, 'utf8')
@@ -46,8 +47,8 @@ fileRead(path.join("inputs/",readFileName)).then(data => {
         glitchData = format.generateDataHex(modData, formatType, configObj)
     }   
 
-    // fs.writeFile(path.join("outputs/",formatType,"/",bentFileName), glitchData, (err) => {
-    //     if (err) console.log(err);
-    //     console.log('The file has been saved!');
-    //   });
+    fs.writeFile(path.join("outputs/",formatType,"/",bentFileName), glitchData, (err) => {
+        if (err) console.log(err);
+        console.log('The file has been saved!');
+      });
 })
