@@ -6,7 +6,7 @@ const readFile = util.promisify(fs.readFile);
 const path = require('path');
 
 // node convertFile.js testFile.txt outfile -f=p -s
-// node convertFile.js testFile.txt outfile -f=g
+// node convertFile.js testFile.txt outfile -f=g -s
 
 function fileRead(file) {
     return readFile(file, 'utf8')
