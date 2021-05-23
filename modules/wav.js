@@ -24,7 +24,7 @@ exports.header = (inputData, configObj) => {
 
     sampleRate = "44AC0000";
     sampleBits = "88510100";
-    bitRate = utilities.generateBitRateGif(); // from 0001 to 9999?
+    bitRate = utilities.generateBitRateWav(); // from 0001 to 9999?
     bitsPerSample = utilities.coinflip("1000","2000"); // 1000 or 2000
     fmtCombined = fmt + fmtLength + formatType + channels + sampleRate + sampleBits + bitRate + bitsPerSample;
     

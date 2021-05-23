@@ -91,8 +91,8 @@ scrambleText = (value, situ, repeats) => {
 exports.inputScrambler = (inputText) => {
     let inputScrambled = "";
     // mess with these values to change the intensity of the randomness
-    let rMin = 125;
-    let rMax = 2500;
+    let rMin = 100;
+    let rMax = 10000;
 
     for (let i = 0; i < inputText.length; i++) {
 
@@ -127,11 +127,27 @@ exports.generateColorTableGif = (colorNum) => {
     return colorTable
 }
 
-exports.generateBitRateGif = () => {
+exports.generateLZWGifCodeSize = () => {
+    let choice = getRandomIntInclusive(0,4)
+    if (choice == 0) {
+        return "02"
+    } else if (choice == 1) {
+        return "03"
+    } else if (choice == 2) {
+        return "04"
+    } else if (choice == 3) {
+        return "05"
+    } else if (choice == 4) {
+        return "06"
+    }
+}
+
+exports.generateBitRateWav = () => {
     let valString = ""
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
         valString+= getRandomIntInclusive(0,9).toString();
     }
+    valString += "1";
     return valString
 }
 

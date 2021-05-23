@@ -33,9 +33,10 @@ exports.generateData = (inputData, outputType, configObj) => {
             newHex = png.body(inputData, configObj);
             break;
     }
-    // arr = [header,newHex];
-    // buf = Buffer.concat(arr);
-    // return buf;
+    arr = [header,newHex];
+    buf = Buffer.concat(arr);
+    // console.log(header)
+    return buf;
 }
 
 // if incoming data is hexcode
@@ -60,7 +61,7 @@ exports.generateDataHex = (inputData, outputType, configObj) => {
             break;
         case 'gif':
             header = gif.header(inputData, configObj);
-            newHex = gif.bodyHex(inputData, configObj);
+            newHex = gif.body(inputData, configObj);
             break;
         case 'png':
             header = gif.header(inputData, configObj);
@@ -68,7 +69,7 @@ exports.generateDataHex = (inputData, outputType, configObj) => {
             break;
     }
 
-    // arr = [header,newHex];
-    // buf = Buffer.concat(arr);
-    // return buf;
+    arr = [header,newHex];
+    buf = Buffer.concat(arr);
+    return buf;
 }

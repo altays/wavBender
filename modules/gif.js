@@ -1,3 +1,4 @@
+const utilities = require('./utilities');
 // http://giflib.sourceforge.net/whatsinagif/bits_and_bytes.html
 // http://giflib.sourceforge.net/whatsinagif/animation_and_transparency.html
 // http://fileformats.archiveteam.org/wiki/GIF#Animated_GIF
@@ -9,7 +10,7 @@
 exports.header = (inputData, configObj) => {
     let header, input, headerStr;
     let gifHead, logicalScreenDescriptor, cWidth, cHeight, packedField1, backgroundColorAspect, pixelAspectRatio;
-    let globalColorTable;
+    let globalColorTable = "";
     let applicationExtension;
    
     gifHead = "474946383961" // "GIF89a"
@@ -20,12 +21,9 @@ exports.header = (inputData, configObj) => {
     pixelAspectRatio = "00"
     logicalScreenDescriptor = cWidth + cHeight + packedField1 + backgroundColorAspect + pixelAspectRatio;
 
-    globalColorTable = "FFFFFFFF0000FF00FF000000" // 2 colors set in packedField1, need 3 hex values for RGB
-    // for (let i = 0; i < 12; i++) {
-    //     globalColorTable += inputData[i].split("").map(c => c.charCodeAt(0).toString(16).padStart(2, "0")).join(""); 
-    // }
-
-    // globalColorTable = globalColorTable.split("").map(c => c.charCodeAt(0).toString(16).padStart(2, "0")).join(""); // converting from utf to hex. thank stack overflow
+    // 4 colors set in packedField1, need 4 hex values for RGB
+    globalColorTable = utilities.generateColorTableGif(4)
+    // globalColorTable = '220000FFFFFF0000FF00FF00'
 
     // application extension - includes 'NETSCAPE2.0'
     applicationExtension = "21FF0B4E45545343415045322E300301FFFF00"
@@ -33,7 +31,6 @@ exports.header = (inputData, configObj) => {
     header = Buffer.alloc(gifHead.length + logicalScreenDescriptor.length + globalColorTable.length + applicationExtension.length);
     headerStr = gifHead + logicalScreenDescriptor + globalColorTable + applicationExtension;
     header = Buffer.from(headerStr, "hex")
-    // console.log(header.length)
     return header;
 }
 
@@ -46,8 +43,10 @@ exports.body = (inputData, configObj) => {
 
     cWidth = "9001" //600 pixels // might need to swap these values
     cHeight = "9001" // 600 pixels // might need to swap these values *58 and 02
-    dataChunkSize = 1000 // use this to determine how many values get grabbed at a time
+    dataChunkSize = utilities.getRandomIntInclusive(10000,100000)// use this to determine how many values get grabbed at a time
     imageData = "";
+
+    // let codeSize = utilities.generateLZWGifCodeSize()
 
     for (let i = 0; i < inputData.length; i+= dataChunkSize) {
         if (inputData.slice(i,i+dataChunkSize).length == dataChunkSize) {
@@ -55,9 +54,9 @@ exports.body = (inputData, configObj) => {
             extensionIntroducer = "21"
             graphicControlLabel = "F9" 
             byteSize = "04" 
-            packedField2 ="09" 
+            packedField2 ="00" 
             delayTime = "0000" // this could be modified
-            transparentColorIndex = "FF"  // this could be variable
+            transparentColorIndex = "00"  // this could be variable
             blockTerminator = "00"
             graphicControlExtension = extensionIntroducer + graphicControlLabel + byteSize + packedField2 + delayTime + transparentColorIndex + blockTerminator;
 
@@ -67,15 +66,13 @@ exports.body = (inputData, configObj) => {
             imageTop = "0000"; // this could be modified. need ot translate numbers into hex
             imageWidth = cWidth; // this could be modified. need ot translate numbers into hex
             imageHeight = cHeight; // this could be modified. need ot translate numbers into hex
-            packedField3 = "08"
+            packedField3 = "00"
             imageDescriptor = imageSeparator + imageLeft + imageTop + imageWidth + imageHeight + packedField3 
 
-            lzwMinCodeSize = "03" //this might be variable -> from 0 to 9
+            lzwMinCodeSize = utilities.generateLZWGifCodeSize() //this might be variable -> from 0 to 9
             imageDataChunk = inputData.slice(i,i+dataChunkSize).split("").map(c => c.charCodeAt(0).toString(16).padStart(2, "0")).join(""); // converting from utf to hex. thank stack overflow
-            // console.log(imageDataChunk)
             blockSize = imageDataChunk.length.toString(16) // hexadecimal version of the size of the block. so, this = dataSubBlock.toString(16)
             dataSubBlock = graphicControlExtension + imageDescriptor + lzwMinCodeSize + blockSize + imageDataChunk + blockTerminator;
-            // console.log(dataSubBlock)
             imageData += dataSubBlock;
         }
     }
