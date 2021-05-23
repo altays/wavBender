@@ -61,7 +61,7 @@ fileRead(path.join('inputs/', readFileName)).then(data => {
 
     let i = 0
     while (i < whileLimit) {
-        let randomIndex = utilities.getRandomIntInclusive(0,bufSetArray.length)
+        let randomIndex = utilities.getRandomIntInclusive(0,bufSetArray.length-1)
         // let randomIndex = utilities.getRandomIntInclusive(0,)
         remixedData += bufSetArray[randomIndex]
         i++
