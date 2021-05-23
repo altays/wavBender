@@ -1,0 +1,24 @@
+{
+  "name": "text2other",
+  "version": "1.0.0",
+  "description": "Converts anything into gif and wav files with valid formats / headers. Work in progress!",
+  "main": "convertFile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gif":"node convertFile.js testFile.txt outfile -f=g",
+    "wav":"node convertFile.js testFile.txt outfile -f=w -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altays/text2other.git"
+  },
+  "keywords": [
+    "glitch"
+  ],
+  "author": "Alex Taylor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/altays/text2other/issues"
+  },
+  "homepage": "https://github.com/altays/text2other#readme"
+}

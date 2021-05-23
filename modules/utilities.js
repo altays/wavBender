@@ -56,6 +56,14 @@ getRandomIntInclusive = (min, max) => {
 
 exports.getRandomIntInclusive = getRandomIntInclusive;
 
+exports.coinflip = (input1, input2) => {
+    if (getRandomIntInclusive(0,1) == 0) {
+        return input1
+    } else {
+        return input2
+    }
+}
+
 scrambleText = (value, situ, repeats) => {
     tempVal = value;
     switch (situ) {
@@ -83,8 +91,8 @@ scrambleText = (value, situ, repeats) => {
 exports.inputScrambler = (inputText) => {
     let inputScrambled = "";
     // mess with these values to change the intensity of the randomness
-    let rMin = 100;
-    let rMax = 10000;
+    let rMin = 125;
+    let rMax = 2500;
 
     for (let i = 0; i < inputText.length; i++) {
 
@@ -108,6 +116,25 @@ exports.inputScrambler = (inputText) => {
     return inputScrambled
 }
 
+exports.generateColorTableGif = (colorNum) => {
+    let colorTable = ''
+    let hexVals = '0123456789ABCDEF'
+
+    for (let i = 0; i < colorNum*6; i++) {
+        colorTable += hexVals[getRandomIntInclusive(0,hexVals.length-1)]
+    }
+
+    return colorTable
+}
+
+exports.generateBitRateGif = () => {
+    let valString = ""
+    for (let i = 0; i < 4; i++) {
+        valString+= getRandomIntInclusive(0,9).toString();
+    }
+    return valString
+}
+
 exports.pngBitDepth = idhrColor => {
     switch (idhrColor) {
         case "00":
@@ -125,5 +152,34 @@ exports.pngBitDepth = idhrColor => {
         case "06":
             validNums = ["08","16"];
             return validNums[getRandomIntInclusive(0,validNums.length-1)];
+    }
+}
+
+exports.pngCreatePLTEChunk = (colorType, inputData) => {
+    let plteChunk = "";
+    let spltChunk = "";
+    let srgbChunk = ""
+
+    switch(colorType) {
+        case "00":
+            // no PLTE chunk
+            return ""
+        case "02":
+            // MVP - go with a PLTE - RGB triple
+        case "03":
+            // from w3.org
+                // The first entry in PLTE is referenced by pixel value 0, the second by pixel value 1, etc. 
+                // The number of palette entries shall not exceed the range that can be represented in the image bit depth 
+                // (for example, 24 = 16 for a bit depth of 4). It is permissible to have fewer entries than the bit depth would allow. 
+                // In that case, any out-of-range pixel value found in the image data is an error.
+            // needs a PLTE chunk
+                // pixel depth of 1- 2 colors, 2 - 4 colors, 4 - 16 colors, 8 - 256 colors
+                // each pixel is a palette index
+        case "04":
+            // no PLTE chunk
+            return ""
+        case "06":
+            // MVP - go with a PLTE
+                // each pixel is an RGB triple followed by an alpha sample 
     }
 }

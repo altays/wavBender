@@ -1,3 +1,5 @@
+const utilities = require('./utilities')
+
 exports.header = (inputData, configObj) => {
     let header, input, headerStr;
     let riff, fileSize, wave, riffCombined;
@@ -18,12 +20,12 @@ exports.header = (inputData, configObj) => {
     fmt = "666D7420";
     fmtLength = "10000000";
     formatType = "0100";
-    channels = "0100"
+    channels =  utilities.coinflip("0200","0100") // change to 0100 for stereo
 
     sampleRate = "44AC0000";
     sampleBits = "88510100";
-    bitRate = "0200";
-    bitsPerSample = "1000";
+    bitRate = utilities.generateBitRateGif(); // from 0001 to 9999?
+    bitsPerSample = utilities.coinflip("1000","2000"); // 1000 or 2000
     fmtCombined = fmt + fmtLength + formatType + channels + sampleRate + sampleBits + bitRate + bitsPerSample;
     
     data = "64617461";
