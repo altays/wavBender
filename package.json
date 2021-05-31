@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "gif":"node convertFile.js testFile.txt outfile -f=g -s",
     "wav":"node convertFile.js testFile.txt outfile -f=w -s",
-    "generate": "node generateFile testFile.txt -s=2 -f=w -w=100"
+    "generate": "node generateFile.js testFile.txt -s=2 -f=w -w=100",
+    "wavbody":"node separateBodyWav.js test.wav"
   },
   "repository": {
     "type": "git",
