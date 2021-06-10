@@ -12,11 +12,7 @@ Inspired by the works of Nick Briz and other glitch artists.
 
 For an example of this in use, check out the video below. Note: generated gifs were the source images; datamoshing and panning were used to transform the static images.
 
-
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/APtvwQSTJik" frameborder="0" allowfullscreen="true"> </iframe>
-</figure>
-
+[![Watch the video](https://www.youtube.com/embed/APtvwQSTJik)
 
 ## How?
 
