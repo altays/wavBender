@@ -10,10 +10,6 @@ You will need NodeJS to run this.
 
 Inspired by the works of Nick Briz and other glitch artists.
 
-For an example of this in use, check out the video below. Note: generated gifs were the source images; datamoshing and panning were used to transform the static images.
-
-[![Watch the video](https://www.youtube.com/embed/APtvwQSTJik)
-
 ## How?
 
 To convert a file into a wav, type "npm run wav". This sets the format to wav, input type to text, and scrambles the incoming text. This will also save a new file starting with the name "outfile", which will be saved in the outputs folder. To use a different file, add a new file to the inputs folder and specify the new file name instead of "testFile.txt". The inputs/ folder extension gets automatically parsed, so just use the file name and extension.
