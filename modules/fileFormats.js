@@ -1,41 +1,19 @@
-const bmp = require('./bmp')
-const gif = require('./gif');
-const jpg = require('./jpg');
-const mp3 = require('./mp3');
 const wav = require('./wav');
-const png = require('./png')
 
 exports.generateData = (inputData, outputType, configObj) => {
     let header, newHex;
     switch(outputType){
-        case 'mp3':
-            header = mp3.header(inputData);
-            newHex = mp3.body(inputData);
-            break;
-        case 'jpg':
-            header = jpg.header(inputData);
-            newHex = jpg.body(inputData);
-            break;
         case 'wav':
             header = wav.header(inputData, configObj);
             newHex = wav.body(inputData, configObj);
             break;
-        case 'bmp':
-            header = bmp.header(inputData);
-            newHex = bmp.body(inputData);
-            break;
-        case 'gif':
-            header = gif.header(inputData, configObj);
-            newHex = gif.body(inputData, configObj);
-            break;
-        case 'png':
-            header = png.header(inputData, configObj);
-            newHex = png.body(inputData, configObj);
+       default:
+            header = wav.header(inputData, configObj);
+            newHex = wav.body(inputData, configObj);
             break;
     }
     arr = [header,newHex];
     buf = Buffer.concat(arr);
-    // console.log(header)
     return buf;
 }
 
@@ -43,30 +21,15 @@ exports.generateData = (inputData, outputType, configObj) => {
 exports.generateDataHex = (inputData, outputType, configObj) => {
     let header, newHex;
     switch(outputType){
-        case 'mp3':
-            header = mp3.header(inputData);
-            newHex = mp3.bodyHex(inputData);
-            break;
-        case 'jpg':
-            header = jpg.header(inputData);
-            newHex = jpg.bodyHex(inputData);
-            break;
         case 'wav':
             header = wav.header(inputData);
             newHex = wav.bodyHex(inputData);
             break;
-        case 'bmp':
-            header = bmp.header(inputData);
-            newHex = bmp.bodyHex(inputData);
+        default:
+            header = wav.header(inputData);
+            newHex = wav.bodyHex(inputData);
             break;
-        case 'gif':
-            header = gif.header(inputData, configObj);
-            newHex = gif.body(inputData, configObj);
-            break;
-        case 'png':
-            header = gif.header(inputData, configObj);
-            newHex = gif.bodyHex(inputData, configObj);
-            break;
+
     }
 
     arr = [header,newHex];

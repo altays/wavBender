@@ -116,32 +116,6 @@ exports.inputScrambler = (inputText) => {
     return inputScrambled
 }
 
-exports.generateColorTableGif = (colorNum) => {
-    let colorTable = ''
-    let hexVals = '0123456789ABCDEF'
-
-    for (let i = 0; i < colorNum*6; i++) {
-        colorTable += hexVals[getRandomIntInclusive(0,hexVals.length-1)]
-    }
-
-    return colorTable
-}
-
-exports.generateLZWGifCodeSize = () => {
-    let choice = getRandomIntInclusive(0,4)
-    if (choice == 0) {
-        return "02"
-    } else if (choice == 1) {
-        return "03"
-    } else if (choice == 2) {
-        return "04"
-    } else if (choice == 3) {
-        return "05"
-    } else if (choice == 4) {
-        return "06"
-    }
-}
-
 exports.generateBitRateWav = () => {
     let valString = ""
     for (let i = 0; i < 3; i++) {
@@ -149,53 +123,4 @@ exports.generateBitRateWav = () => {
     }
     valString += "1";
     return valString
-}
-
-exports.pngBitDepth = idhrColor => {
-    switch (idhrColor) {
-        case "00":
-            validNums = ["00","01","02","04","08","16"];
-            return validNums[getRandomIntInclusive(0,validNums.length-1)];
-        case "02":
-            validNums = ["08","16"];
-            return validNums[getRandomIntInclusive(0,validNums.length-1)];
-        case "03":
-            validNums = ["01","02","04","08"];
-            return validNums[getRandomIntInclusive(0,validNums.length-1)];
-        case "04":
-            validNums = ["08","16"];
-            return validNums[getRandomIntInclusive(0,validNums.length-1)];
-        case "06":
-            validNums = ["08","16"];
-            return validNums[getRandomIntInclusive(0,validNums.length-1)];
-    }
-}
-
-exports.pngCreatePLTEChunk = (colorType, inputData) => {
-    let plteChunk = "";
-    let spltChunk = "";
-    let srgbChunk = ""
-
-    switch(colorType) {
-        case "00":
-            // no PLTE chunk
-            return ""
-        case "02":
-            // MVP - go with a PLTE - RGB triple
-        case "03":
-            // from w3.org
-                // The first entry in PLTE is referenced by pixel value 0, the second by pixel value 1, etc. 
-                // The number of palette entries shall not exceed the range that can be represented in the image bit depth 
-                // (for example, 24 = 16 for a bit depth of 4). It is permissible to have fewer entries than the bit depth would allow. 
-                // In that case, any out-of-range pixel value found in the image data is an error.
-            // needs a PLTE chunk
-                // pixel depth of 1- 2 colors, 2 - 4 colors, 4 - 16 colors, 8 - 256 colors
-                // each pixel is a palette index
-        case "04":
-            // no PLTE chunk
-            return ""
-        case "06":
-            // MVP - go with a PLTE
-                // each pixel is an RGB triple followed by an alpha sample 
-    }
 }

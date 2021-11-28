@@ -1,7 +1,7 @@
 const fs = require('fs');
 const util = require('util');
-const format = require('./modules/fileFormats');
-const utilities = require('./modules/utilities');
+const format = require('../modules/fileFormats');
+const utilities = require('../modules/utilities');
 const readFile = util.promisify(fs.readFile);
 const path = require('path');
 
@@ -13,7 +13,9 @@ let formatType, bentFileName, glitchData, parseType;
 [nodePath, filePath, readFileName, outputFileName, ...args] = process.argv;
 
 fileRead(path.join("inputs/",readFileName)).then(data => {
-    
+
+
+    formatType = "wav"
     configObj = new Object();
     modData = data;
     parseType = "text"
@@ -21,6 +23,8 @@ fileRead(path.join("inputs/",readFileName)).then(data => {
     args.forEach(arg => {
         let prefix = arg.trim().slice(0,2);
         let postfix = arg.trim().slice(3);
+
+        // checking format - for expanding on later
         if (prefix == "-f") {
             formatType = utilities.checkFormatType(postfix);
         }
