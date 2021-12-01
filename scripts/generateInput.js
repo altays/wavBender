@@ -2,9 +2,9 @@ const fs = require('fs');
 const util = require('util');
 const readFile = util.promisify(fs.readFile);
 const path = require('path');
-const utilities = require('./modules/utilities');
+const utilities = require('../modules/utilities');
 
-// generates a file using hex characters from a file. breaks source down into groups of characters, rebuilds based on number of those groups. 
+// generates a text file using hex characters from a file. breaks source down into groups of characters, rebuilds based on number of those groups. 
 // i.e., can break a file down into sets of 2 characters, then rebuild with 100 random sets
 
 // node generateFile glitchtest-wav.wavchars.txt -s=2 -f=w -w=100 
@@ -56,7 +56,6 @@ fileRead(path.join('inputs/', readFileName)).then(data => {
     let i = 0
     while (i < whileLimit) {
         let randomIndex = utilities.getRandomIntInclusive(0,bufSetArray.length-1)
-        // let randomIndex = utilities.getRandomIntInclusive(0,)
         remixedData += bufSetArray[randomIndex]
         i++
     }

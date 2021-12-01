@@ -7,7 +7,7 @@ const utilities = require('../modules/utilities');
 // separates the header and body from a wav file, returns the bytes from the body
 
 function fileRead(file) {
-    return readFile(file, 'utf8')
+    return readFile(file, 'hex')
 }
 
 [nodePath, filePath, readFileName, ...args] = process.argv;
@@ -15,9 +15,9 @@ function fileRead(file) {
 fileRead(path.join('inputs/', readFileName)).then(data => {
     let readFileNameNoExt = readFileName.slice(0,readFileName.length-4);
    
-    let body = data.slice(55,data.length)
+    let body = data.slice(176,data.length)
     let wavBody = Buffer.alloc(body.length)
-    wavBody.write(body, "utf16le")
+    wavBody.write(body, "hex")
 
     let versionName = utilities.nameVersion(readFileNameNoExt)
 

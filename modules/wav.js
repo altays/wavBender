@@ -8,7 +8,7 @@ exports.header = (inputData, configObj) => {
 
     header = Buffer.alloc(50);
     input = Buffer.from(inputData, "utf-8");
-    riff = "52494646";
+    riff = "52494646"; 
     wave = "57415645";
     headerLength = header.length;
     inputLength = input.length;
@@ -23,9 +23,12 @@ exports.header = (inputData, configObj) => {
     channels =  utilities.coinflip("0200","0100") // change to 0100 for stereo
 
     sampleRate = "44AC0000";
-    sampleBits = "88510100";
-    bitRate = utilities.generateBitRateWav(); // from 0001 to 9999?
-    bitsPerSample = utilities.coinflip("1000","2000"); // 1000 or 2000
+    // sampleBits = "88510100";
+    sampleBits = "10B10200"
+    // bitRate = utilities.generateBitRateWav(); // from 0001 to 9999?
+    bitRate = "0400"
+    // bitsPerSample = utilities.coinflip("1000","2000"); // 1000 or 2000
+    bitsPerSample = "1000"
     fmtCombined = fmt + fmtLength + formatType + channels + sampleRate + sampleBits + bitRate + bitsPerSample;
     
     data = "64617461";

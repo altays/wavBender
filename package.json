@@ -1,12 +1,12 @@
 {
-  "name": "wavBender",
+  "name": "wavbender",
   "version": "1.0.0",
   "description": "Converts anything into wav files with valid formats / headers. Work in progress!",
   "main": "convertFile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "wav":"node scripts/convertFile.js testFile.txt outfile -s",
-    "generateInput": "node scripts/generateInput.js testFile.txt -s=2 -w=100",
+    "generateInput": "node scripts/generateInput.js testFile2.txt -s=20 -w=100",
     "generateInputHex":"node scripts/generateInputHex.js test.wav"
   },
   "repository": {
